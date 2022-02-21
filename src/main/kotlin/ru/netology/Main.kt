@@ -7,31 +7,41 @@ import ru.netology.service.WallService
 
 fun main() {
 
-    var original = Post(
-        id = (0..10_000).random(),
+    val original = Post(
+        id = 100,
         "это тестовый пост",
         12022022,
         12345,
         friendsOnly = false
     )
-
-    val newPost = Post(
-        (0..10_000).random(),
-        "второй пост",
-        20022022,
-        54321
-    )
-
-    val commentToPost0 = CommentsObj(
-    count = 1,
-    )
-
     WallService.add(original)
-    WallService.add(newPost)
+
+//    val newPost = Post(
+//        222,
+//        "второй пост",
+//        20022022,
+//        54321
+//    )
+//    WallService.add(newPost)
 
     WallService.print()
 
+// добавляем коммент
+    val commentToPost0 = CommentsObj(
+        count = 1,
+    )
     original.comments = commentToPost0
+    WallService.print()
 
+//обновляем пост
+    val originalUpdated = Post(
+        100,
+        "новый текст записан",
+        date = 21022022,
+        12345,
+    )
+    WallService.update(originalUpdated)
+
+    println("Обновление поста с id ${original.id} выполнено")
     WallService.print()
 }

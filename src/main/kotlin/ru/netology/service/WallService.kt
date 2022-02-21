@@ -13,12 +13,14 @@ object WallService {
     fun update(post: Post): Boolean {
         for ((index, postik) in posts.withIndex()) {
             return if (postik.id == post.id) {
-                posts.
+                posts += postik.copy(text = post.text)
                 true
             } else {
                 false
             }
         }
+        return false
+    }
 
         fun print() {
             for ((index, post) in posts.withIndex()) {
