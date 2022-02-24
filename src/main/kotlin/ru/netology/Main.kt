@@ -16,14 +16,23 @@ fun main() {
     )
     WallService.add(original)
 
-//    val newPost = Post(
-//        222,
-//        "второй пост",
-//        20022022,
-//        54321
-//    )
-//    WallService.add(newPost)
+    val newPost = Post(
+        22,
+        "второй пост",
+        20022022,
+        54321
+    )
+    WallService.add(newPost)
 
+    val thirdPOst = Post(
+    333,
+    "третий пост",
+    20022022,
+    54321
+    )
+    WallService.add(thirdPOst)
+
+    println("SYSTEM: Список постов \n")
     WallService.print()
 
 // добавляем коммент
@@ -31,17 +40,19 @@ fun main() {
         count = 1,
     )
     original.comments = commentToPost0
+
+    println("SYSTEM: Список постов с комментами \n")
     WallService.print()
 
 //обновляем пост
     val originalUpdated = Post(
-        100,
+        333,
         "новый текст записан",
         date = 21022022,
         12345,
     )
-    WallService.update(originalUpdated)
+   var resultat = WallService.update(originalUpdated)
 
-    println("Обновление поста с id ${original.id} выполнено")
+    println("SYSTEM: Обновление поста с id=${originalUpdated.id} = $resultat \n")
     WallService.print()
 }
