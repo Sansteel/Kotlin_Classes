@@ -26,9 +26,10 @@ class WallServiceTest {
         val expextedPosts = listOf(testPost2, testPost1)
         // act
         WallService.add(testPost1)
+        val actualResult = WallService.add(testPost2)
 
         // assert
-        assertEquals(expextedPosts, WallService.add(testPost2))
+        assertEquals(expextedPosts.last(), actualResult)
     }
 
 //    @Test
@@ -48,7 +49,7 @@ class WallServiceTest {
 
 
     @Test
-    fun update() {
+    fun update_true() {
         // arrange
         val testPost1 = Post(
             id = 12345,
@@ -67,9 +68,35 @@ class WallServiceTest {
         WallService.update(testPost2)
 
         // act
-        val actualResult = WallService.add(testPost2)
+        val actualResultUpd = WallService.update(testPost2)
 
         // assert
-        assertEquals(true, actualResult)
+        assertEquals(true, actualResultUpd)
+    }
+
+    @Test
+    fun update_false() {
+        // arrange
+        val testPost1 = Post(
+            id = 12345,
+            "Тестим",
+            0,
+            0
+        )
+        WallService.add(testPost1)
+
+        val testPost2 = Post(
+            id = 1234,
+            "updated",
+            0,
+            0
+        )
+        WallService.update(testPost2)
+
+        // act
+        val actualResultUpd = WallService.update(testPost2)
+
+        // assert
+        assertEquals(false, actualResultUpd)
     }
 }
