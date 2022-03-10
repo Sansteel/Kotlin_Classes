@@ -10,10 +10,11 @@ class WallServiceTest {
 
     @Test
     fun add() {
+        val service = WallService()
         // arrange
         val testPost1 = Post(
             id = 0,
-            "Тестим",
+            "Тестим add",
             0,
             0
         )
@@ -23,80 +24,70 @@ class WallServiceTest {
             1,
             1
         )
-        val expextedPosts = listOf(testPost2, testPost1)
+        val expextedPosts = listOf(testPost1, testPost2)
         // act
-        WallService.add(testPost1)
-        val actualResult = WallService.add(testPost2)
+        service.add(testPost1)
+        service.add(testPost2)
+        val actualResult = listOf(service.posts[0], service.posts[1])
 
         // assert
-        assertEquals(expextedPosts.last(), actualResult)
+        assertEquals(expextedPosts, actualResult)
     }
-
-//    @Test
-//    fun add() {
-//        // arrange
-//        val testPost1 = Post(
-//            id = 0,
-//            "Тестим",
-//            0,
-//            0
-//        )
-//        // act
-//        val actualPost = WallService.add(testPost1)
-//        // assert
-//        assertEquals(testPost1, actualPost)
-//    }
-
 
     @Test
     fun update_true() {
         // arrange
-        val testPost1 = Post(
+        val serviceUpdate = WallService()
+        val testPost101 = Post(
             id = 12345,
-            "Тестим",
+            "Тестим true",
             0,
             0
         )
-        WallService.add(testPost1)
 
-        val testPost2 = Post(
+        val testPost102 = Post(
             id = 12345,
             "updated",
             0,
             0
         )
-        WallService.update(testPost2)
+
 
         // act
-        val actualResultUpd = WallService.update(testPost2)
+        serviceUpdate.update(testPost102)
+        serviceUpdate.add(testPost101)
+        val actualResultUpd = serviceUpdate.update(testPost102)
 
         // assert
-        assertEquals(true, actualResultUpd)
+        assertTrue(actualResultUpd)
     }
 
     @Test
     fun update_false() {
         // arrange
-        val testPost1 = Post(
+        val testServise = WallService()
+        val testPost103 = Post(
             id = 12345,
-            "Тестим",
+            "Тестим false",
             0,
             0
         )
-        WallService.add(testPost1)
 
-        val testPost2 = Post(
+        val testPost203 = Post(
             id = 1234,
             "updated",
             0,
             0
         )
-        WallService.update(testPost2)
+
 
         // act
-        val actualResultUpd = WallService.update(testPost2)
+        testServise.add(testPost103)
+        testServise.update(testPost203)
+        val actualResultUpd = testServise.update(testPost203)
 
         // assert
-        assertEquals(false, actualResultUpd)
+        assertFalse(actualResultUpd)
     }
+
 }

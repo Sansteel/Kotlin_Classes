@@ -1,11 +1,11 @@
 package ru.netology
 
-import ru.netology.data.CommentsObj
-import ru.netology.data.Post
+import ru.netology.data.*
 import ru.netology.service.WallService
 
 
 fun main() {
+    val myService = WallService()
 
     val original = Post(
         id = 100,
@@ -14,7 +14,7 @@ fun main() {
         12345,
         friendsOnly = false
     )
-    WallService.add(original)
+    myService.add(original)
 
     val newPost = Post(
         22,
@@ -22,7 +22,7 @@ fun main() {
         20022022,
         54321
     )
-    WallService.add(newPost)
+    myService.add(newPost)
 
     val thirdPOst = Post(
     333,
@@ -30,10 +30,10 @@ fun main() {
     20022022,
     54321
     )
-    WallService.add(thirdPOst)
+    myService.add(thirdPOst)
 
     println("SYSTEM: Список постов \n")
-    WallService.print()
+    myService.print()
 
 // добавляем коммент
     val commentToPost0 = CommentsObj(
@@ -42,17 +42,17 @@ fun main() {
     original.comments = commentToPost0
 
     println("SYSTEM: Список постов с комментами \n")
-    WallService.print()
+    myService.print()
 
 //обновляем пост
     val originalUpdated = Post(
         333,
-        "новый текст записан",
+        "обновленный пост это",
         date = 21022022,
         12345,
     )
-   var resultat = WallService.update(originalUpdated)
+   var resultat = myService.update(originalUpdated)
 
     println("SYSTEM: Обновление поста с id=${originalUpdated.id} = $resultat \n")
-    WallService.print()
+    myService.print()
 }

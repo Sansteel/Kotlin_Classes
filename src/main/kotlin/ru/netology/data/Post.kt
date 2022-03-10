@@ -31,7 +31,7 @@ public final data class Post public constructor( //fixme да, знаю, ест�
     val postponedID: Int = 0 //Идентификатор отложенной записи. Это поле возвращается тогда, когда запись стояла на таймере.
 
 
-    ) //fixme end public constructor parameters
+) //fixme end public constructor parameters
 {
- //   constructor(id: Int, text: String, friendsOnly: Boolean) : this()
+    //   constructor(id: Int, text: String, friendsOnly: Boolean) : this()
 }

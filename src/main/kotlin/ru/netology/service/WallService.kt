@@ -2,7 +2,7 @@ package ru.netology.service
 
 import ru.netology.data.Post
 
-object WallService {
+class WallService {
     internal var posts = emptyArray<Post>() // пустой массив из постов
 
     fun add(post: Post): Post { //метод для создания записи должен выглядеть вот так (на вх и вых Post)
@@ -10,10 +10,10 @@ object WallService {
         return posts.last()
     }
 
-    fun update(post: Post): Boolean {
-        for (postik in posts) {
-            if (postik.id == post.id) {
-                posts += postik.copy(text = post.text)
+    fun update(newPost: Post): Boolean {
+        for ((index, oldPost) in posts.withIndex()) {
+            if (oldPost.id == newPost.id) {
+                posts[index] = newPost.copy(ownerId = oldPost.ownerId, date = oldPost.date)
                 return true
             }
         }
