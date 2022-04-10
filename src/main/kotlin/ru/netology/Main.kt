@@ -1,5 +1,7 @@
 package ru.netology
 
+import ru.netology.attacments.Attachment
+import ru.netology.attacments.*
 import ru.netology.data.*
 import ru.netology.service.WallService
 
@@ -12,7 +14,12 @@ fun main() {
         "это тестовый пост",
         12022022,
         12345,
-        friendsOnly = false
+        friendsOnly = false,
+        likes = null,
+        reposts = null,
+        attachermnts = null,
+        views = null,
+        original = null
     )
     myService.add(original)
 
@@ -20,22 +27,19 @@ fun main() {
         22,
         "второй пост",
         20022022,
-        54321
+        54321,
+        likes = null,
+        reposts = null,
+        attachermnts = null,
+        views = null,
+        original = null
     )
     myService.add(newPost)
 
-    val thirdPOst = Post(
-    333,
-    "третий пост",
-    20022022,
-    54321
-    )
-    myService.add(thirdPOst)
+//    println("SYSTEM: Список постов \n")
+//    myService.print()
 
-    println("SYSTEM: Список постов \n")
-    myService.print()
-
-// добавляем коммент
+// добавляем коммент в пост original
     val commentToPost0 = CommentsObj(
         count = 1,
     )
@@ -44,15 +48,19 @@ fun main() {
     println("SYSTEM: Список постов с комментами \n")
     myService.print()
 
-//обновляем пост
     val originalUpdated = Post(
-        333,
-        "обновленный пост это",
-        date = 21022022,
-        12345,
+        22,
+        "второй пост",
+        20022022,
+        54321,
+        likes = null,
+        reposts = null,
+        attachermnts = Audio(
+            "audio", 1112233, 123,333, null, null, 10),
+        views = null,
+        original = null
     )
-   var resultat = myService.update(originalUpdated)
+    myService.update(originalUpdated)
 
-    println("SYSTEM: Обновление поста с id=${originalUpdated.id} = $resultat \n")
     myService.print()
 }

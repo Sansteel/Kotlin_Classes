@@ -1,10 +1,9 @@
 package ru.netology.data
 
-import ru.netology.data.CommentsObj
+import ru.netology.attacments.Attachment
 
-public final data class Post public constructor( //fixme да, знаю, есть избыточные термины
-    //fixme start public constructor parameters
-    public final val id: Int, //Идентификатор записи
+data class Post (
+    val id: Int, //Идентификатор записи
     var text: String, //Текст записи
     val date: Int, //Время публикации записи в формате unixtime
     val ownerId: Int, //Идентификатор владельца стены, на которой размещена запись
@@ -15,10 +14,10 @@ public final data class Post public constructor( //fixme да, знаю, ест�
 //    val replyPostId: Int, //Идентификатор записи, в ответ на которую была оставлена текущая.
     val friendsOnly: Boolean = false, // 1, если запись была создана с опцией «Только для друзей»
     var comments: CommentsObj? = null, // нет комментов в начале
-    //    val copyright: CopyrightObj, //todo
-//    val likes: LikesObj, //todo
-//    val reposts: RepostsObj, //todo
-//    val views: ViewsObj, //todo
+    //val copyright: CopyrightObj, //todo
+    val likes: LikesObj?, //todo
+    val reposts: RepostsObj?, //todo
+    val views: ViewsObj?, //todo
     val postType: String = "post", //Тип записи, может принимать следующие значения: post, copy, reply, postpone, suggest
     val signerId: Int = ownerId, // Идентификатор автора, если запись была опубликована от имени сообщества и подписана пользователем
     var canPin: Boolean = true, //может ли текущий пользователь закрепить запись (1 — может).
@@ -28,10 +27,11 @@ public final data class Post public constructor( //fixme да, знаю, ест�
     var markedAds: Boolean = false, //содержит ли запись отметку «реклама» (1 — да
     var isFavorite: Boolean = false, //true, если объект добавлен в закладки у текущего пользователя
     //    val donut: DonutObj, //todo
-    val postponedID: Int = 0 //Идентификатор отложенной записи. Это поле возвращается тогда, когда запись стояла на таймере.
+    val postponedID: Int = 0, //Идентификатор отложенной записи. Это поле возвращается тогда, когда запись стояла на таймере.
+    val original: Post?,
+    val attachermnts: Attachment?
 
-
-) //fixme end public constructor parameters
+)
 {
     //   constructor(id: Int, text: String, friendsOnly: Boolean) : this()
 }

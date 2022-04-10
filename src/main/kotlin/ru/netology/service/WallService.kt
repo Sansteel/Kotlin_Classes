@@ -25,7 +25,12 @@ class WallService {
             println("Пост ${index + 1}: id=" + posts[index].id)
             println("text=" + posts[index].text)
             println("owner id=" + posts[index].ownerId)
-            println("Комментов=" + posts[index].comments?.count + "\n")
+            println("Комментов=" + posts[index].comments?.count)
+            println("Вложение - " + posts[index].attachermnts?.attType)
+//            if (posts[index].attachermnts == null) {
+//                println("Вложения:" + posts[index].attachermnts?.print())
+//            } else println("Вложений нет")
+            println("\n")
         }
     }
 }
